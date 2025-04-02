@@ -1,0 +1,145 @@
+1. Dresseur
+Justification : Les dresseurs sont les personnages principaux qui capturent, évoluent et entraînent les monsters. Chaque dresseur peut avoir plusieurs monsters et doit être suivi pour la gestion des combats et des achats.
+
+Attributs :
+
+id_dresseur : Identifiant unique du dresseur. (Clé primaire)
+
+nom : Le nom du dresseur. Nécessaire pour l'identification.
+
+niveau : Le niveau du dresseur, qui peut influencer ses capacités et ses interactions dans le jeu.
+
+argent : Montant d'argent que possède le dresseur, essentiel pour les achats et les transactions.
+
+rang : Le rang du dresseur, indiquant s'il est débutant, avancé ou professeur.
+
+2. Monster
+Justification : Les monsters sont les créatures que les dresseurs capturent et entraînent. Ils sont au cœur du gameplay, participant aux combats et évoluant selon les événements du jeu.
+
+Attributs :
+
+id_monster : Identifiant unique du monster. (Clé primaire)
+
+nom : Nom du monstre.
+
+id_espece : Identifiant de l'espèce à laquelle appartient le monstre (clé étrangère vers l'entité Espèce).
+
+poids : Poids du monstre, utile pour certains calculs dans le jeu.
+
+taille : Taille du monstre, également utilisé pour des calculs.
+
+points_vie : Points de vie du monstre, représentant sa résistance en combat.
+
+points_puissance : Points de puissance du monstre, représentant sa capacité à infliger des dégâts.
+
+niveau : Niveau actuel du monstre, influençant sa force et ses capacités.
+
+points_experience : Points d'expérience accumulés, déterminant son évolution.
+
+type : Type élémentaire du monstre (Feu, Eau, Terre, Air), influençant ses attaques et résistances.
+
+id_dresseur : Référence au dresseur propriétaire du monstre (clé étrangère vers l'entité Dresseur).
+
+3. Espèce
+Justification : Les espèces définissent les caractéristiques de base des monsters. Chaque espèce a des propriétés communes, comme les points de vie de base, l'attaque et la résistance.
+
+Attributs :
+
+id_espece : Identifiant unique de l'espèce. (Clé primaire)
+
+nom : Nom de l'espèce.
+
+points_vie_base : Points de vie de base pour l'espèce, qui influencent les points de vie des monsters de cette espèce.
+
+points_attaque : Les points d'attaque de base des monsters de cette espèce.
+
+degats_min : Les dégâts minimums pour les monsters de cette espèce.
+
+type_elementaire : Le type de l'espèce (Feu, Eau, etc.).
+
+niveau_max : Niveau maximal que le monstre peut atteindre dans cette espèce avant évolution.
+
+4. Arène
+Justification : Les arènes sont les lieux où les combats ont lieu, et chaque arène peut avoir des caractéristiques spécifiques (localisation, capacité, etc.).
+
+Attributs :
+
+id_arene : Identifiant unique de l'arène. (Clé primaire)
+
+nom : Nom de l'arène.
+
+localisation : Localisation géographique de l'arène, importante pour la gestion des événements.
+
+capacite : La capacité maximale de l'arène en termes de spectateurs ou participants.
+
+notoriete : La notoriété de l'arène, influençant peut-être les événements et l'intérêt des dresseurs.
+
+5. Combat
+Justification : Les combats permettent aux monsters de gagner de l'expérience et de monter de niveau. Chaque combat est enregistré pour garder trace des résultats et des statistiques.
+
+Attributs :
+
+id_combat : Identifiant unique du combat. (Clé primaire)
+
+id_monster_1 : Identifiant du premier monstre participant au combat (clé étrangère vers l'entité Monster).
+
+id_monster_2 : Identifiant du deuxième monstre participant au combat (clé étrangère vers l'entité Monster).
+
+id_arene : Référence à l'arène où le combat a eu lieu (clé étrangère vers l'entité Arène).
+
+date : La date du combat.
+
+resultat : Le résultat du combat, indiquant qui a gagné.
+
+points_experience_monster_1 : Points d'expérience gagnés par le premier monstre à la suite du combat.
+
+points_experience_monster_2 : Points d'expérience gagnés par le deuxième monstre à la suite du combat.
+
+6. Quête
+Justification : Les quêtes sont des missions que les monsters peuvent accomplir pour gagner de l'expérience et évoluer. Elles sont essentielles pour le gameplay, car elles offrent des objectifs supplémentaires.
+
+Attributs :
+
+id_quete : Identifiant unique de la quête. (Clé primaire)
+
+nom : Nom de la quête.
+
+type : Type de quête (permanente ou ponctuelle).
+
+recompense : Récompense donnée à la fin de la quête (peut être de l'expérience, de l'argent, ou des objets).
+
+duree : Durée de la quête (si elle est ponctuelle).
+
+difficulte : Niveau de difficulté de la quête.
+
+7. Vente
+Justification : Les ventes sont utilisées pour enregistrer les achats ou les captures de monsters par les dresseurs. Cela permet de suivre l'origine des monsters.
+
+Attributs :
+
+id_vente : Identifiant unique de la vente. (Clé primaire)
+
+id_dresseur : Référence au dresseur qui a effectué l'achat. (clé étrangère vers l'entité Dresseur)
+
+id_monster : Référence au monstre acheté ou capturé. (clé étrangère vers l'entité Monster)
+
+prix : Le prix du monstre lors de la vente.
+
+date_vente : La date à laquelle la vente a eu lieu.
+
+8. Équipement
+Justification : L'équipement permet aux monsters de renforcer leurs capacités, et chaque équipement peut avoir des caractéristiques différentes en fonction du type d'arène.
+
+Attributs :
+
+id_equipement : Identifiant unique de l'équipement. (Clé primaire)
+
+nom : Nom de l'équipement.
+
+type : Type d'équipement (par exemple, armes, armures).
+
+bonus_vie : Bonus en points de vie que l'équipement donne au monstre.
+
+bonus_degats : Bonus en dégâts que l'équipement donne au monstre.
+
+id_arene : Référence à l'arène où l'équipement est utilisé (clé étrangère vers l'entité Arène).
